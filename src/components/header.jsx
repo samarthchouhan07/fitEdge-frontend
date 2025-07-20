@@ -15,6 +15,9 @@ export const Header = () => {
 //   console.log("storedUser:",storedUser)
   const user = storedUser ? JSON.parse(storedUser) : null;
   const token = localStorage.getItem("token");
+  if(!user){
+    navigate("/login")
+  }
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -36,7 +39,7 @@ export const Header = () => {
       }
     };
     fetchUserProfile();
-  }, [ token]);
+  }, [ user,token]);
 
   const handleLogout = () => {
     localStorage.removeItem("user");

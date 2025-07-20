@@ -104,7 +104,7 @@ export const AdminDashboard = () => {
       }
     };
     fetchData();
-  }, [user?.id, token, user?.role, navigate]);
+  }, [ token, navigate]);
 
   const handleAssign = async () => {
     if (!selectedCoach || !selectedClient) {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   ChevronRight,
   Play,
@@ -20,6 +20,10 @@ export const Landing = () => {
   const [scrollY, setScrollY] = useState(0);
   const storedUser = localStorage.getItem("user");
   const user = storedUser ? JSON.parse(storedUser) : null;
+  const navigate=useNavigate()
+  if(!user){
+    navigate("/login")
+  }
   const features = [
     {
       icon: <Users className="w-8 h-8 text-blue-600" />,
@@ -502,7 +506,6 @@ export const Landing = () => {
                 personalized plans.
               </p>
             </div>
-
             <div>
               <h4 className="font-semibold text-gray-200 mb-4">Platform</h4>
               <ul className="space-y-2 text-gray-400">
