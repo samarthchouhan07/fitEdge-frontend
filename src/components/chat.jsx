@@ -299,7 +299,7 @@ export const Chat = () => {
   console.log("users:", selectedUser);
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col sm:flex-row">
+    <div className="min-h-screen max-w-7xl bg-gray-50 flex flex-col sm:flex-row">
       {isSidebarOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-10 sm:hidden"
