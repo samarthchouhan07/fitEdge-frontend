@@ -241,7 +241,7 @@ export const Landing = () => {
               >
                 Settings
               </a>
-              {user.role === "coach" && (
+              {user?.role === "coach" && (
                 <a
                   href="coach/create-plan"
                   className="block text-gray-600 hover:text-blue-600 transition-colors"
