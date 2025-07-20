@@ -21,9 +21,12 @@ export const Landing = () => {
   const storedUser = localStorage.getItem("user");
   const user = storedUser ? JSON.parse(storedUser) : null;
   const navigate=useNavigate()
-  if(!user){
-    navigate("/login")
-  }
+  useEffect(()=>{
+
+    if(!user){
+      navigate("/login")
+    }
+  },[user,navigate])
   const features = [
     {
       icon: <Users className="w-8 h-8 text-blue-600" />,
