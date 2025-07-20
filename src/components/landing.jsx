@@ -121,33 +121,33 @@ export const Landing = () => {
               <span className="text-2xl font-bold text-blue-600">FitEdge</span>
             </div>
             <div className="hidden md:flex items-center space-x-8">
-              <a
-                href="/chat"
+              <Link
+                to="/chat"
                 className="text-gray-600 hover:text-blue-600 transition-colors"
               >
                 Chat
-              </a>
-              <a
-                href="/settings"
+              </Link>
+              <Link
+                to="/settings"
                 className="text-gray-600 hover:text-blue-600 transition-colors"
               >
                 Settings
-              </a>
+              </Link>
               {user?.role === "coach" && (
-                <a
-                  href="/coach/create-plan"
+                <Link
+                  to="/coach/create-plan"
                   className="text-gray-600 hover:text-blue-600 transition-colors"
                 >
                   Create-Plan
-                </a>
+                </Link>
               )}
               {user?.role === "user" && (
-                <a
-                  href="/client/plans/workout"
+                <Link
+                  to="/client/plans/workout"
                   className="text-gray-600 hover:text-blue-600 transition-colors"
                 >
                   Plans
-                </a>
+                </Link>
               )}
               <Link
                 to={getDashboardPath()}
@@ -171,37 +171,42 @@ export const Landing = () => {
         {isMenuOpen && (
           <div className="md:hidden bg-white shadow-md border-t border-gray-200">
             <div className="px-4 py-4 space-y-4">
-              <a
-                href="/chat"
+              <Link
+                to="/chat"
                 className="block text-gray-600 hover:text-blue-600 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Chat
-              </a>
-              <a
-                href="/settings"
+              </Link>
+              <Link
+                to="/settings"
                 className="block text-gray-600 hover:text-blue-600 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Settings
-              </a>
+              </Link>
               {user?.role === "coach" && (
-                <a
-                  href="/coach/create-plan"
+                <Link
+                  to="/coach/create-plan"
                   className="block text-gray-600 hover:text-blue-600 transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   Create-Plan
-                </a>
+                </Link>
               )}
               {user?.role === "user" && (
-                <a
-                  href="/client/plans/workout"
+                <Link
+                  to="/client/plans/workout"
                   className="block text-gray-600 hover:text-blue-600 transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   Plans
-                </a>
+                </Link>
               )}
               <Link
                 to={getDashboardPath()}
                 className="block bg-blue-600 text-white px-6 py-2 rounded-lg text-center hover:bg-blue-700 transition-all duration-300"
+                onClick={() => setIsMenuOpen(false)}
               >
                 {user ? "Dashboard" : "Get Started"}
               </Link>
