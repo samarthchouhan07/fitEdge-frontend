@@ -88,14 +88,14 @@ export const Chat = () => {
       return;
     }
 
-    socketRef.current = io("https://fitedge-backend.onrender.com");
+    socketRef.current = io("http://localhost:5000");
     socketRef.current.emit("join", userId);
 
     const fetchUsers = async () => {
       try {
         setIsLoading(true);
         const response = await axios.get(
-          "https://fitedge-backend.onrender.com/api/chat/users",
+          "http://localhost:5000/api/chat/users",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -176,7 +176,7 @@ export const Chat = () => {
     socketRef.current.on("refreshUsers", async () => {
       try {
         const response = await axios.get(
-          "https://fitedge-backend.onrender.com/api/chat/users",
+          "http://localhost:5000/api/chat/users",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -201,7 +201,7 @@ export const Chat = () => {
       const fetchMessages = async () => {
         try {
           const response = await axios.get(
-            `https://fitedge-backend.onrender.com/api/chat/messages/${selectedUser._id}`,
+            `http://localhost:5000/api/chat/messages/${selectedUser._id}`,
             {
               headers: { Authorization: `Bearer ${token}` },
             }
@@ -220,7 +220,7 @@ export const Chat = () => {
           }));
           setMessages(mappedMessages);
           const readResponse = await axios.post(
-            `https://fitedge-backend.onrender.com/api/chat/messages/${selectedUser._id}/read`,
+            `http://localhost:5000/api/chat/messages/${selectedUser._id}/read`,
             {},
             { headers: { Authorization: `Bearer ${token}` } }
           );

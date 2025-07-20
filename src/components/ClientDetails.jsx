@@ -38,7 +38,7 @@ export const ClientDetails = () => {
     const fetchClientDetails = async () => {
       try {
         const response = await axios.get(
-          `https://fitedge-backend.onrender.com/api/coach/dashboard/${coachId}`,
+          `http://localhost:5000/api/coach/dashboard/${coachId}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }

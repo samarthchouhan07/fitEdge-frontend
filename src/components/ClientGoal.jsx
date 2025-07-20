@@ -41,7 +41,7 @@ export const ClientGoal = () => {
         const storedUser = localStorage.getItem("user");
         const user = storedUser ? JSON.parse(storedUser) : null;
         const res = await fetch(
-          `https://fitedge-backend.onrender.com/api/goals?userId=${user?.id}`
+          `http://localhost:5000/api/goals?userId=${user?.id}`
         );
         if (!res.ok) return toast.error("Failed to fetch goals");
 
@@ -155,7 +155,7 @@ export const ClientGoal = () => {
   const toggleMilestone = async (goalId, milestoneId) => {
     try {
       const res = await fetch(
-        `https://fitedge-backend.onrender.com/api/goals/${goalId}/milestones/${milestoneId}/toggle`,
+        `http://localhost:5000/api/goals/${goalId}/milestones/${milestoneId}/toggle`,
         { method: "PATCH" }
       );
 

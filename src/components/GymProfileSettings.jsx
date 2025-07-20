@@ -82,7 +82,7 @@ export const GymProfileSettings = () => {
     const fetchProfile = async () => {
       try {
         const response = await axios.get(
-          "https://fitedge-backend.onrender.com/api/user/profile",
+          "http://localhost:5000/api/user/profile",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -177,7 +177,7 @@ export const GymProfileSettings = () => {
   const handleSave = async () => {
     try {
       const response = await axios.put(
-        "https://fitedge-backend.onrender.com/api/user/profile",
+        "http://localhost:5000/api/user/profile",
         tempData,
         { headers: { Authorization: `Bearer ${token}` } }
       );

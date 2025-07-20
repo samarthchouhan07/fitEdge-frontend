@@ -20,13 +20,14 @@ export const Landing = () => {
   const [scrollY, setScrollY] = useState(0);
   const storedUser = localStorage.getItem("user");
   const user = storedUser ? JSON.parse(storedUser) : null;
-  const navigate=useNavigate()
-  useEffect(()=>{
+  const navigate = useNavigate();
 
-    if(!user){
-      navigate("/login")
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
     }
-  },[user,navigate])
+  }, [user, navigate]);
+
   const features = [
     {
       icon: <Users className="w-8 h-8 text-blue-600" />,
@@ -91,81 +92,16 @@ export const Landing = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const [statsResponse, testimonialsResponse] = await Promise.all([
-  //         axios.get("https://fitedge-backend.onrender.com/api/public/stats"),
-  //         axios.get("https://fitedge-backend.onrender.com/api/public/testimonials"),
-  //       ]);
-  //       setStats(statsResponse.data.stats);
-  //       console.log("Fetched stats:", statsResponse.data);
-  //       console.log("Fetched testimonials:", testimonialsResponse.data);
-  //     } catch (error) {
-  //       console.error(
-  //         "Error fetching data:",
-  //         error.response?.data || error.message
-  //       );
-  //       toast.error("Error loading page data");
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
-
-  // const handleNewsletterSubmit = async (e) => {
-  //   e.preventDefault();
-  //   if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
-  //     toast.error("Please enter a valid email address");
-  //     return;
-  //   }
-  //   try {
-  //     await axios.post("https://fitedge-backend.onrender.com/api/public/newsletter", {
-  //       email,
-  //     });
-  //     toast.success("Subscribed to newsletter successfully!");
-  //     setEmail("");
-  //   } catch (error) {
-  //     console.error(
-  //       "Newsletter subscription failed:",
-  //       error.response?.data || error.message
-  //     );
-  //     toast.error(error.response?.data?.error || "Failed to subscribe");
-  //   }
-  // };
-
   const getDashboardPath = () => {
     if (!user) return "/login";
-    if (user.role === "admin") return "/admin/dashboard";
-    if (user.role === "coach") return "/coach/dashboard";
+    if (user?.role === "admin") return "/admin/dashboard";
+    if (user?.role === "coach") return "/coach/dashboard";
     return "/client/dashboard";
   };
 
-  // if (isLoading) {
-  //   return (
-  //     <div className="text-center py-8 bg-gray-50">
-  //       <div className="animate-spin mx-auto text-blue-600" size={32}>
-  //         <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24">
-  //           <circle
-  //             className="opacity-25"
-  //             cx="12"
-  //             cy="12"
-  //             r="10"
-  //             stroke="currentColor"
-  //             strokeWidth="4"
-  //           ></circle>
-  //           <path
-  //             className="opacity-75"
-  //             fill="currentColor"
-  //             d="M4 12a8 8 0 018-8v8z"
-  //           ></path>
-  //         </svg>
-  //       </div>
-  //       <p className="mt-2 text-gray-600">Loading...</p>
-  //     </div>
-  //   );
-  // }
+  if (!user) {
+    return null; // Prevent rendering until redirect occurs
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900">
@@ -186,28 +122,28 @@ export const Landing = () => {
             </div>
             <div className="hidden md:flex items-center space-x-8">
               <a
-                href="chat"
+                href="/chat"
                 className="text-gray-600 hover:text-blue-600 transition-colors"
               >
                 Chat
               </a>
               <a
-                href="settings"
+                href="/settings"
                 className="text-gray-600 hover:text-blue-600 transition-colors"
               >
                 Settings
               </a>
-              {user.role === "coach" && (
+              {user?.role === "coach" && (
                 <a
-                  href="coach/create-plan"
+                  href="/coach/create-plan"
                   className="text-gray-600 hover:text-blue-600 transition-colors"
                 >
                   Create-Plan
                 </a>
               )}
-              {user.role === "user" && (
+              {user?.role === "user" && (
                 <a
-                  href="client/plans/workout"
+                  href="/client/plans/workout"
                   className="text-gray-600 hover:text-blue-600 transition-colors"
                 >
                   Plans
@@ -219,7 +155,6 @@ export const Landing = () => {
               >
                 {user ? "Dashboard" : "Get Started"}
               </Link>
-              
             </div>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -237,20 +172,20 @@ export const Landing = () => {
           <div className="md:hidden bg-white shadow-md border-t border-gray-200">
             <div className="px-4 py-4 space-y-4">
               <a
-                href="chat"
+                href="/chat"
                 className="block text-gray-600 hover:text-blue-600 transition-colors"
               >
                 Chat
               </a>
               <a
-                href="settings"
+                href="/settings"
                 className="block text-gray-600 hover:text-blue-600 transition-colors"
               >
                 Settings
               </a>
               {user?.role === "coach" && (
                 <a
-                  href="coach/create-plan"
+                  href="/coach/create-plan"
                   className="block text-gray-600 hover:text-blue-600 transition-colors"
                 >
                   Create-Plan
@@ -258,7 +193,7 @@ export const Landing = () => {
               )}
               {user?.role === "user" && (
                 <a
-                  href="client/plans/workout"
+                  href="/client/plans/workout"
                   className="block text-gray-600 hover:text-blue-600 transition-colors"
                 >
                   Plans
@@ -291,7 +226,7 @@ export const Landing = () => {
                 </h1>
                 <p className="text-xl text-gray-600 max-w-2xl">
                   Connect with expert coaches, track your goals, and achieve the
-                  results you&apos;ve always wanted with our comprehensive
+                  results you've always wanted with our comprehensive
                   fitness platform.
                 </p>
               </div>
@@ -329,7 +264,6 @@ export const Landing = () => {
                 ))}
               </div>
             </div>
-
             <div className="relative">
               <Card className="bg-white border-gray-200 shadow-md">
                 <CardContent className="p-8 space-y-6">
@@ -390,7 +324,6 @@ export const Landing = () => {
               need to achieve your fitness goals.
             </p>
           </div>
-
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
               <Card
@@ -538,7 +471,6 @@ export const Landing = () => {
                 </li>
               </ul>
             </div>
-
             <div>
               <h4 className="font-semibold text-gray-200 mb-4">Support</h4>
               <ul className="space-y-2 text-gray-400">
@@ -568,7 +500,6 @@ export const Landing = () => {
                 </li>
               </ul>
             </div>
-
             <div>
               <h4 className="font-semibold text-gray-200 mb-4">Company</h4>
               <ul className="space-y-2 text-gray-400">
@@ -599,7 +530,6 @@ export const Landing = () => {
               </ul>
             </div>
           </div>
-
           <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
             <p>© 2025 FitPro. All rights reserved.</p>
           </div>

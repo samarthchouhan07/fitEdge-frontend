@@ -72,16 +72,16 @@ export const AdminDashboard = () => {
           statsResponse,
           activityResponse,
         ] = await Promise.all([
-          axios.get("https://fitedge-backend.onrender.com/api/admin/coaches", {
+          axios.get("http://localhost:5000/api/admin/coaches", {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          axios.get("https://fitedge-backend.onrender.com/api/admin/users", {
+          axios.get("http://localhost:5000/api/admin/users", {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          axios.get("https://fitedge-backend.onrender.com/api/admin/stats", {
+          axios.get("http://localhost:5000/api/admin/stats", {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          axios.get("https://fitedge-backend.onrender.com/api/admin/activity", {
+          axios.get("http://localhost:5000/api/admin/activity", {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ]);
@@ -113,7 +113,7 @@ export const AdminDashboard = () => {
     }
     try {
       await axios.post(
-        "https://fitedge-backend.onrender.com/api/admin/assign",
+        "http://localhost:5000/api/admin/assign",
         { coachId: selectedCoach, clientId: selectedClient },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -122,10 +122,10 @@ export const AdminDashboard = () => {
       setSelectedCoach("");
       setSelectedClient("");
       const [usersResponse, activityResponse] = await Promise.all([
-        axios.get("https://fitedge-backend.onrender.com/api/admin/users", {
+        axios.get("http://localhost:5000/api/admin/users", {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        axios.get("https://fitedge-backend.onrender.com/api/admin/activity", {
+        axios.get("http://localhost:5000/api/admin/activity", {
           headers: { Authorization: `Bearer ${token}` },
         }),
       ]);
@@ -143,14 +143,14 @@ export const AdminDashboard = () => {
   const handleEdit = async (userId, updatedData) => {
     try {
       await axios.put(
-        `https://fitedge-backend.onrender.com/api/admin/users/${userId}`,
+        `http://localhost:5000/api/admin/users/${userId}`,
         updatedData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       toast.success("User updated successfully!");
       setEditingUser(null);
       const usersResponse = await axios.get(
-        "https://fitedge-backend.onrender.com/api/admin/users",
+        "http://localhost:5000/api/admin/users",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -166,12 +166,12 @@ export const AdminDashboard = () => {
   const handleDelete = async (userId) => {
     if (!window.confirm("Are you sure you want to delete this user?")) return;
     try {
-      await axios.delete(`https://fitedge-backend.onrender.com/api/admin/users/${userId}`, {
+      await axios.delete(`http://localhost:5000/api/admin/users/${userId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success("User deleted successfully!");
       const usersResponse = await axios.get(
-        "https://fitedge-backend.onrender.com/api/admin/users",
+        "http://localhost:5000/api/admin/users",
         {
           headers: { Authorization: `Bearer ${token}` },
         }

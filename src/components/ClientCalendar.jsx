@@ -31,7 +31,7 @@ export const ClientCalendar = () => {
     }
 
     axios
-      .get(`https://fitedge-backend.onrender.com/api/client/plans/${clientId}`)
+      .get(`http://localhost:5000/api/client/plans/${clientId}`)
       .then((res) => {
         console.log("Raw plans from API:", res.data);
 

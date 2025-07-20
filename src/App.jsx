@@ -17,14 +17,47 @@ import { ClientDashboard } from "./components/ClientDashboard";
 import { GymProfileSettings } from "./components/GymProfileSettings";
 import { ClientDetails } from "./components/ClientDetails";
 import { Header } from "./components/header";
+import React from "react";
+
+class ErrorBoundary extends React.Component {
+  state = { hasError: false, error: null };
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+          <div className="bg-white border-gray-200 shadow-sm p-6 rounded-lg">
+            <h2 className="text-lg font-semibold text-red-600">
+              Something went wrong
+            </h2>
+            <p className="text-gray-600 mt-2">
+              {this.state.error?.message || "Unknown error"}
+            </p>
+            <button
+              className="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg"
+              onClick={() => window.location.reload()}
+            >
+              Refresh Page
+            </button>
+          </div>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 const Layout = () => (
-  <div>
-    <Header />
-    <div className="pt-16">
-      <Outlet />
+  <ErrorBoundary>
+    <div>
+      <Header />
+      <div className="pt-16">
+        <Outlet />
+      </div>
     </div>
-  </div>
+  </ErrorBoundary>
 );
 
 function App() {

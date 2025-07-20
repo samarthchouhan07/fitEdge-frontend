@@ -22,7 +22,7 @@ export const CoachPlanDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`https://fitedge-backend.onrender.com/api/coach/plan/${planId}`)
+      .get(`http://localhost:5000/api/coach/plan/${planId}`)
       .then((res) => setPlan(res.data))
       .catch((e) => console.log("Failed to fetch plan:", e));
   }, [planId]);

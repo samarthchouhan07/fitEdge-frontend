@@ -70,7 +70,7 @@ export const UserProfile = () => {
     const fetchProfile = async () => {
       try {
         const response = await axios.get(
-          `https://fitedge-backend.onrender.com/api/user/profile/${userId}`,
+          `http://localhost:5000/api/user/profile/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
