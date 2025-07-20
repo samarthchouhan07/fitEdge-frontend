@@ -18,7 +18,7 @@ export const LoginPage = () => {
     if (!pattern.test(email)) return toast.error("Enter a valid email");
     try {
       setLoading(true);
-      await axios.post("http://localhost:5000/api/auth/request-otp", { email });
+      await axios.post("https://fitedge-backend.onrender.com/api/auth/request-otp", { email });
       localStorage.setItem("auth_email", email);
       toast.success(`OTP sent on your email:${email}`);
       navigate("/verify");

@@ -118,7 +118,7 @@ export const CreateGoal = () => {
 
   const createGoal = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/goals", {
+      const response = await fetch("https://fitedge-backend.onrender.com/api/goals", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -248,7 +248,7 @@ export const CreateGoal = () => {
   useEffect(() => {
     const fetchGoals = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/goals");
+        const response = await fetch("https://fitedge-backend.onrender.com/api/goals");
         if (!response.ok) toast.error("Failed to fetch goals");
         const data = await response.json();
         setCreatedGoals(data);

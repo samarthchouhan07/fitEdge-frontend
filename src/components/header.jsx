@@ -29,7 +29,7 @@ export const Header = () => {
     const fetchUserProfile = async () => {
       if (!user || !token) return;
       try {
-        const response = await axios.get("http://localhost:5000/api/user/profile", {
+        const response = await axios.get("https://fitedge-backend.onrender.com/api/user/profile", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUserProfile(response.data);
