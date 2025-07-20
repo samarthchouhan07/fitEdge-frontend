@@ -66,7 +66,7 @@ export const ClientDashboard = () => {
     const fetchData = async () => {
       try {
         const profileResponse = await axios.get(
-          "http://localhost:5000/api/user/profile",
+          "https://fitedge-backend.onrender.com/api/user/profile",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -76,7 +76,7 @@ export const ClientDashboard = () => {
         setProfileData(profileResponse.data);
 
         const plansResponse = await axios.get(
-          `http://localhost:5000/api/client/plans/${userId}`,
+          `https://fitedge-backend.onrender.com/api/client/plans/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -86,7 +86,7 @@ export const ClientDashboard = () => {
         setPlans(plansResponse.data);
 
         const goalsResponse = await axios.get(
-          "http://localhost:5000/api/goals",
+          "https://fitedge-backend.onrender.com/api/goals",
           {
             headers: {
               Authorization: `Bearer ${token}`,

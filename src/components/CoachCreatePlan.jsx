@@ -54,7 +54,7 @@ export const CoachCreatePlan = () => {
     const fetchClients = async () => {
       try {
         axios
-          .get(`http://localhost:5000/api/coach/clients/${coachId}`)
+          .get(`https://fitedge-backend.onrender.com/api/coach/clients/${coachId}`)
           .then((res) => {
             setClients(res.data);
           })
@@ -150,7 +150,7 @@ export const CoachCreatePlan = () => {
     setIsLoading(true);
     try {
       await axios.post(
-        "http://localhost:5000/api/coach/create-plan",
+        "https://fitedge-backend.onrender.com/api/coach/create-plan",
         { coachId, clientId: selectedClient, type: activeTab, ...plan },
         { headers: { Authorization: `Bearer ${token}` } }
       );

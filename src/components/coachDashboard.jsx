@@ -67,7 +67,7 @@ export const CoachDashboard = () => {
     const fetchDashboardData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/coach/dashboard/${coachId}?year=${selectedYear}`,
+          `https://fitedge-backend.onrender.com/api/coach/dashboard/${coachId}?year=${selectedYear}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setClients(response.data.clients);
@@ -91,7 +91,7 @@ export const CoachDashboard = () => {
   const handleDeletePlan = async () => {
     try {
       await axios.delete(
-        `http://localhost:5000/api/coach/plan/${deletePlanId}`,
+        `https://fitedge-backend.onrender.com/api/coach/plan/${deletePlanId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

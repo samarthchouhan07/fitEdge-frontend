@@ -31,7 +31,7 @@ export const ClientWorkoutPlans = () => {
   useEffect(() => {
     if (!clientId) return;
     axios
-      .get(`http://localhost:5000/api/client/plans/${clientId}`)
+      .get(`https://fitedge-backend.onrender.com/api/client/plans/${clientId}`)
       .then((res) => {
         const allPlans = res.data;
         setPlans(allPlans);
@@ -70,7 +70,7 @@ export const ClientWorkoutPlans = () => {
 
   const handleMarkAsDone = async (planId) => {
     try {
-      await axios.post(`http://localhost:5000/api/client/plans/done/${planId}`);
+      await axios.post(`https://fitedge-backend.onrender.com/api/client/plans/done/${planId}`);
       toast.success("Plan marked as done!");
       setPlans((prev) =>
         prev.map((plan) =>

@@ -88,8 +88,8 @@ export const Landing = () => {
   //   const fetchData = async () => {
   //     try {
   //       const [statsResponse, testimonialsResponse] = await Promise.all([
-  //         axios.get("http://localhost:5000/api/public/stats"),
-  //         axios.get("http://localhost:5000/api/public/testimonials"),
+  //         axios.get("https://fitedge-backend.onrender.com/api/public/stats"),
+  //         axios.get("https://fitedge-backend.onrender.com/api/public/testimonials"),
   //       ]);
   //       setStats(statsResponse.data.stats);
   //       console.log("Fetched stats:", statsResponse.data);
@@ -114,7 +114,7 @@ export const Landing = () => {
   //     return;
   //   }
   //   try {
-  //     await axios.post("http://localhost:5000/api/public/newsletter", {
+  //     await axios.post("https://fitedge-backend.onrender.com/api/public/newsletter", {
   //       email,
   //     });
   //     toast.success("Subscribed to newsletter successfully!");
